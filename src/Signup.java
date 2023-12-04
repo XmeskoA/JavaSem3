@@ -13,10 +13,26 @@ public class Signup {
         System.out.println("Zadajte svoje heslo:");
         String upassword= scan.nextLine();
         PrintWriter writer= new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"), true);
+        writer.println("addU");
         writer.println(uname);
         writer.println(uemail);
         writer.println(upassword);
 
+
+    }
+    public static void registerAdmin (Socket socket) throws IOException {
+        Scanner scan= new Scanner(System.in);
+        System.out.println("Zadajte pouzivatelov username:");
+        String uname= scan.nextLine();
+        System.out.println("Zadajte pouzivatelov email:");
+        String uemail= scan.nextLine();
+        System.out.println("Zadajte pouzivatelove heslo:");
+        String upassword= scan.nextLine();
+        PrintWriter writer= new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"), true);
+        writer.println("addU");
+        writer.println(uname);
+        writer.println(uemail);
+        writer.println(upassword);
 
     }
 }

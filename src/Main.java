@@ -15,22 +15,8 @@ public class Main {
   Scanner scan= new Scanner(System.in);
  Socket soc = new Socket ("localhost", 6969);
 
-  while (true){
-     System.out.println("Login or signup?");
-     System.out.println("Zadajte svoju volbu:");
-     String volba= scan.nextLine();
-     if (volba.equals("signup")){
-        Signup signIn= new Signup();
-        signIn.register(soc);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(soc.getInputStream()));
-        Login.loginUser(reader);
 
-     }
-     else if (volba.equals("login")){
-         BufferedReader reader = new BufferedReader(new InputStreamReader(soc.getInputStream()));
-         Login.loginUser(reader);
-     }
-  }
+     InterfaceUser.uvodUvod(soc);
 
  }
 }

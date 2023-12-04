@@ -13,7 +13,6 @@ public class Admin {private int ID;
         this.godmode = godmode;
     }
 
-
     //Getters
     public String getUsername() {
         return username;

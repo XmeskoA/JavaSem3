@@ -27,16 +27,16 @@ public class User {
         return password;
     }
 
-    public void getEmail(String newEmail) {
-        this.email = newEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void getID(int newID) {
-        this.ID = newID;
+    public int getID() {
+        return ID;
     }
 
-    public void getGodmode (int newGodmode) {
-        this.godmode = newGodmode;
+    public int getGodmode () {
+        return godmode;
     }
 
     //Setters
