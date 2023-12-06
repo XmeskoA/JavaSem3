@@ -35,9 +35,10 @@ public class InterfaceUser {
             System.out.println("si v signupe");
             Signup signIn = new Signup();
             signIn.register(soc, reader);
-            String[] odpoved = new String[5];
-            for (int i = 0; i == 4; i++) {
+            String[] odpoved = new String[3];
+            for (int i = 0; i < 3; i++) {
                 odpoved[i] = reader.readLine();
+                System.out.println("som vo for cykle");
                 System.out.println(odpoved[i]);
                 if (odpoved[0] == "null") {
                     System.out.println("User uz existuje");
@@ -45,12 +46,12 @@ public class InterfaceUser {
                 }
             }
             System.out.println("som pri logine");
-            Login.loginUser(odpoved,soc);
+            Login.loginFromSignUp(soc, odpoved[1], odpoved[2]);
         }
 
         else if (volba.equals("login")){
             String[] odpoved = new String[5];
-            for (int i=0; i == 4; i++){
+            for (int i=0; i<5; i++){
                 odpoved[i]= reader.readLine();
             }
             Login.loginUser(odpoved, soc);

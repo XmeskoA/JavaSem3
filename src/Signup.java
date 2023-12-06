@@ -18,7 +18,7 @@ public class Signup {
         writer.println(uname);
         writer.println(uemail);
         writer.println(upassword);
-        reader.readLine();
+        //reader.readLine();
 
 
     }
