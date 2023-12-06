@@ -34,15 +34,17 @@ public class InterfaceUser {
         if (volba.equals("signup")) {
             System.out.println("si v signupe");
             Signup signIn = new Signup();
-            signIn.register(soc);
+            signIn.register(soc, reader);
             String[] odpoved = new String[5];
             for (int i = 0; i == 4; i++) {
                 odpoved[i] = reader.readLine();
-                if (odpoved[0] == "true") {
+                System.out.println(odpoved[i]);
+                if (odpoved[0] == "null") {
                     System.out.println("User uz existuje");
                     InterfaceUser.uvodUvod(soc);
                 }
             }
+            System.out.println("som pri logine");
             Login.loginUser(odpoved,soc);
         }
 

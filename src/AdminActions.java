@@ -62,7 +62,7 @@ public class AdminActions {
         InterfaceAdmin.uvodUvod(admin, socket);
     }
     public static void addNewUser(Socket socket, PrintWriter writer, Admin admin) throws IOException {
-       Signup.registerAdmin(socket);
+       Signup.registerUserByAdmin(socket);
        InterfaceAdmin.uvodUvod(admin, socket);
     }
     public static void removeUser(Admin admin, Socket socket, PrintWriter writer) throws IOException {

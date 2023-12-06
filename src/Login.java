@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Login {
     public static void loginUser ( String[] odpoved, Socket socket) throws IOException {
+        System.out.println("prisiel som az k loginu");
 
         if (Integer.parseInt(odpoved[4])== 0){
             User user = new User (Integer.parseInt(odpoved[4]),odpoved[0], odpoved[1], odpoved[2],0);
