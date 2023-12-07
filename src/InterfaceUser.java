@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Scanner;
 import java.net.Socket;
 
@@ -27,6 +25,7 @@ public class InterfaceUser {
     }
     public static void uvodUvod (Socket soc) throws IOException {
         Scanner scan= new Scanner(System.in);
+        PrintWriter writer= new PrintWriter(new OutputStreamWriter(soc.getOutputStream(), "UTF-8"), true);
         BufferedReader reader = new BufferedReader(new InputStreamReader(soc.getInputStream()));
         System.out.println("Login or signup?");
         System.out.println("Zadajte svoju volbu:");
@@ -46,15 +45,20 @@ public class InterfaceUser {
                 }
             }
             System.out.println("som pri logine");
-            Login.loginFromSignUp(soc, odpoved[1], odpoved[2]);
+            Login.loginFromSignUp(soc, odpoved[0], odpoved[1]);
         }
 
         else if (volba.equals("login")){
+            Login.loginGUI(soc);
             String[] odpoved = new String[5];
             for (int i=0; i<5; i++){
                 odpoved[i]= reader.readLine();
             }
             Login.loginUser(odpoved, soc);
+        }
+        else if (volba.equals("exit")){
+            writer.println("exit");
+            soc.close();
         }
     }
 }
