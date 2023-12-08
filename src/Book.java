@@ -1,4 +1,7 @@
-// Book.java
+/**
+ * Book class represents a book in the library system
+ * It contains the ID, title, publisher, ISBN, author and the ID of an owner
+ */
 public class Book {
     private int id;
     private String title;
