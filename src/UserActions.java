@@ -1,8 +1,6 @@
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.Writer;
+import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.sql.*;
 import java.net.Socket;
@@ -12,8 +10,9 @@ public class UserActions {
     public static void vyber (int volba, User user, Socket socket) throws IOException {
         Scanner scan = new Scanner(System.in);
         PrintWriter writer= new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"), true);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         if (volba==1){
-            //print all books
+            UserActions.zobrazBook(user, socket , writer, reader);
         }
         else if (volba==2){
             UserActions.addBook(user, socket, writer);
@@ -36,13 +35,12 @@ public class UserActions {
         String ISBN = scan.nextLine();
         System.out.println("Zadajte autora knihy na pridanie:");
         String author = scan.nextLine();
-        int id= user.getID();
         writer.println("addB");
         writer.println(nazov);
         writer.println(publisher);
         writer.println(ISBN);
         writer.println(author);
-        writer.println(id);
+        writer.println(user.getID());
         System.out.println("Kniha bola pridana");
         InterfaceUser.uvodPoVybere(socket, user);
     }
@@ -56,6 +54,25 @@ public class UserActions {
         writer.println(user.getID());
         System.out.println("Kniha bola vymazana");
         InterfaceUser.uvodPoVybere(socket, user);
+    }
+    public static void zobrazBook (User user, Socket socket, PrintWriter writer, BufferedReader reader) throws IOException {
+        writer.println("showB");
+        String [] kniha= new String[6];
+        ArrayList<Book> books= new ArrayList<>();
+        int pocetKnih=0, infoOKnihach=0;
+        int pocetRiadkov= Integer.parseInt(reader.readLine());
+        while (pocetKnih<pocetRiadkov){
+            for (infoOKnihach=0; infoOKnihach<6;infoOKnihach++){
+                kniha[infoOKnihach]=reader.readLine();
+            }
+            books.add(new Book(kniha[1],kniha[2], kniha[3], kniha[4], Integer.parseInt(kniha[5])));
+            System.out.println(books);
+        }
+        for (Book i : books){
+            System.out.println(i);
+        }
+        InterfaceUser.uvodPoVybere(socket, user);
+
     }
     public static void logOUT (User user, Socket soc) throws IOException {
         user= null;
